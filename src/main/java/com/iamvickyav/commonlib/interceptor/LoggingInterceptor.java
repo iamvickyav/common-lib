@@ -1,4 +1,4 @@
-package com.iamvickyav.CommonLib;
+package com.iamvickyav.commonlib.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
