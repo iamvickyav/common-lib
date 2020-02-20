@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{HH:mm:ss.SSS} | %5p | (%15.15t) | [%c{1}] : %m; | uri=%X{URI}; endpoint=%X{ENDPOINT}; queryString=%X{QUERYSTRING};%n
+        </Property>
+        <Property name="LOG_FILE_PATTERN">
+            %d{ISO8601} | [%c{1}] | logLevel=%p; thread=%t; message=%m; uri=%X{URI}; endpoint=%X{ENDPOINT}; queryString=%X{QUERYSTRING};%n
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile name="FileAppender" fileName="log/application.log" filePattern="log/application.log.%i" append="true">
+            <PatternLayout pattern="${LOG_FILE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="4"/>
+        </RollingFile>
+        <Async name="root-appender" includeLocation="true" blocking="false">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender" />
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
