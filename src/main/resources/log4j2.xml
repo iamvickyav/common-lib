@@ -19,10 +19,10 @@
             </Policies>
             <DefaultRolloverStrategy max="4"/>
         </RollingFile>
-        <Async name="root-appender" includeLocation="true" blocking="false">
+       <!-- <Async name="root-appender" includeLocation="true" blocking="false">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender" />
-        </Async>
+        </Async>-->
     </Appenders>
     <Loggers>
         <Root level="info">
