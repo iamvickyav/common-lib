@@ -24,8 +24,8 @@ public class LoggingInterceptor implements HandlerInterceptor {
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         long requestEndTime = System.currentTimeMillis();
-        long execTime = Long.parseLong(MDC.get("startTime")) - requestEndTime;
-        LOGGER.info("Request Completed; execTime="+execTime);
+        long execTime = requestEndTime - Long.parseLong(MDC.get("startTime"));
+        LOGGER.info("Request Completed; execTime={}ms", execTime);
         MDC.clear();
     }
 
